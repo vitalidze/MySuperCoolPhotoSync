@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		843D31EE165967A9005108A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843D31ED165967A9005108A6 /* UIKit.framework */; };
+		843D31F0165967A9005108A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843D31EF165967A9005108A6 /* Foundation.framework */; };
+		843D31F2165967A9005108A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843D31F1165967A9005108A6 /* CoreGraphics.framework */; };
+		843D31F8165967A9005108A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 843D31F6165967A9005108A6 /* InfoPlist.strings */; };
+		843D31FA165967A9005108A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D31F9165967A9005108A6 /* main.m */; };
+		843D31FE165967AA005108A6 /* CAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D31FD165967AA005108A6 /* CAppDelegate.m */; };
+		843D3200165967AA005108A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D31FF165967AA005108A6 /* Default.png */; };
+		843D3202165967AA005108A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D3201165967AA005108A6 /* Default@2x.png */; };
+		843D3204165967AA005108A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D3203165967AA005108A6 /* Default-568h@2x.png */; };
+		843D3207165967AA005108A6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D3205165967AA005108A6 /* MainStoryboard.storyboard */; };
+		843D320A165967AA005108A6 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D3209165967AA005108A6 /* CViewController.m */; };
+		84D59D251659973C008FB9A4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D59D241659973C008FB9A4 /* AssetsLibrary.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		843D31E9165967A9005108A6 /* MySuperCoolPhotoSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySuperCoolPhotoSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		843D31ED165967A9005108A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		843D31EF165967A9005108A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		843D31F1165967A9005108A6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		843D31F5165967A9005108A6 /* MySuperCoolPhotoSync-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MySuperCoolPhotoSync-Info.plist"; sourceTree = "<group>"; };
+		843D31F7165967A9005108A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		843D31F9165967A9005108A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		843D31FB165967A9005108A6 /* MySuperCoolPhotoSync-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MySuperCoolPhotoSync-Prefix.pch"; sourceTree = "<group>"; };
+		843D31FC165967AA005108A6 /* CAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAppDelegate.h; sourceTree = "<group>"; };
+		843D31FD165967AA005108A6 /* CAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAppDelegate.m; sourceTree = "<group>"; };
+		843D31FF165967AA005108A6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		843D3201165967AA005108A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		843D3203165967AA005108A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		843D3206165967AA005108A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		843D3208165967AA005108A6 /* CViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CViewController.h; sourceTree = "<group>"; };
+		843D3209165967AA005108A6 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
+		84D59D241659973C008FB9A4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		843D31E6165967A9005108A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84D59D251659973C008FB9A4 /* AssetsLibrary.framework in Frameworks */,
+				843D31EE165967A9005108A6 /* UIKit.framework in Frameworks */,
+				843D31F0165967A9005108A6 /* Foundation.framework in Frameworks */,
+				843D31F2165967A9005108A6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		843D31DE165967A9005108A6 = {
+			isa = PBXGroup;
+			children = (
+				84D59D241659973C008FB9A4 /* AssetsLibrary.framework */,
+				843D31F3165967A9005108A6 /* MySuperCoolPhotoSync */,
+				843D31EC165967A9005108A6 /* Frameworks */,
+				843D31EA165967A9005108A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		843D31EA165967A9005108A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				843D31E9165967A9005108A6 /* MySuperCoolPhotoSync.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		843D31EC165967A9005108A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				843D31ED165967A9005108A6 /* UIKit.framework */,
+				843D31EF165967A9005108A6 /* Foundation.framework */,
+				843D31F1165967A9005108A6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		843D31F3165967A9005108A6 /* MySuperCoolPhotoSync */ = {
+			isa = PBXGroup;
+			children = (
+				843D31FC165967AA005108A6 /* CAppDelegate.h */,
+				843D31FD165967AA005108A6 /* CAppDelegate.m */,
+				843D3205165967AA005108A6 /* MainStoryboard.storyboard */,
+				843D3208165967AA005108A6 /* CViewController.h */,
+				843D3209165967AA005108A6 /* CViewController.m */,
+				843D31F4165967A9005108A6 /* Supporting Files */,
+			);
+			path = MySuperCoolPhotoSync;
+			sourceTree = "<group>";
+		};
+		843D31F4165967A9005108A6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				843D31F5165967A9005108A6 /* MySuperCoolPhotoSync-Info.plist */,
+				843D31F6165967A9005108A6 /* InfoPlist.strings */,
+				843D31F9165967A9005108A6 /* main.m */,
+				843D31FB165967A9005108A6 /* MySuperCoolPhotoSync-Prefix.pch */,
+				843D31FF165967AA005108A6 /* Default.png */,
+				843D3201165967AA005108A6 /* Default@2x.png */,
+				843D3203165967AA005108A6 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		843D31E8165967A9005108A6 /* MySuperCoolPhotoSync */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 843D320D165967AA005108A6 /* Build configuration list for PBXNativeTarget "MySuperCoolPhotoSync" */;
+			buildPhases = (
+				843D31E5165967A9005108A6 /* Sources */,
+				843D31E6165967A9005108A6 /* Frameworks */,
+				843D31E7165967A9005108A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MySuperCoolPhotoSync;
+			productName = MySuperCoolPhotoSync;
+			productReference = 843D31E9165967A9005108A6 /* MySuperCoolPhotoSync.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		843D31E0165967A9005108A6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = C;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = litvak.su;
+			};
+			buildConfigurationList = 843D31E3165967A9005108A6 /* Build configuration list for PBXProject "MySuperCoolPhotoSync" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 843D31DE165967A9005108A6;
+			productRefGroup = 843D31EA165967A9005108A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				843D31E8165967A9005108A6 /* MySuperCoolPhotoSync */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		843D31E7165967A9005108A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843D31F8165967A9005108A6 /* InfoPlist.strings in Resources */,
+				843D3200165967AA005108A6 /* Default.png in Resources */,
+				843D3202165967AA005108A6 /* Default@2x.png in Resources */,
+				843D3204165967AA005108A6 /* Default-568h@2x.png in Resources */,
+				843D3207165967AA005108A6 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		843D31E5165967A9005108A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843D31FA165967A9005108A6 /* main.m in Sources */,
+				843D31FE165967AA005108A6 /* CAppDelegate.m in Sources */,
+				843D320A165967AA005108A6 /* CViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		843D31F6165967A9005108A6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				843D31F7165967A9005108A6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		843D3205165967AA005108A6 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				843D3206165967AA005108A6 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		843D320B165967AA005108A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		843D320C165967AA005108A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		843D320E165967AA005108A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MySuperCoolPhotoSync/MySuperCoolPhotoSync-Prefix.pch";
+				INFOPLIST_FILE = "MySuperCoolPhotoSync/MySuperCoolPhotoSync-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		843D320F165967AA005108A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MySuperCoolPhotoSync/MySuperCoolPhotoSync-Prefix.pch";
+				INFOPLIST_FILE = "MySuperCoolPhotoSync/MySuperCoolPhotoSync-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		843D31E3165967A9005108A6 /* Build configuration list for PBXProject "MySuperCoolPhotoSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843D320B165967AA005108A6 /* Debug */,
+				843D320C165967AA005108A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		843D320D165967AA005108A6 /* Build configuration list for PBXNativeTarget "MySuperCoolPhotoSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				843D320E165967AA005108A6 /* Debug */,
+				843D320F165967AA005108A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 843D31E0165967A9005108A6 /* Project object */;
+}
