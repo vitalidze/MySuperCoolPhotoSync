@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *fldServer;
 - (IBAction)doSync:(id)sender;
 

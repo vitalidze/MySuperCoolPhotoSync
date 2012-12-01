@@ -37,9 +37,9 @@ ALAssetsLibrary* library;
 //            [groups addObject:group];
             
             ALAssetsGroupEnumerationResultsBlock listAssetsBlock = ^(ALAsset* asset, NSUInteger index, BOOL *stop) {
-                ALAssetRepresentation* r = [asset defaultRepresentation];
-                NSLog(@"Loaded asset %@ at %@ size = %i, UTI = %@", [r filename], [r url], [r size], [r UTI]);
-                CGImageRef imgref = [r fullResolutionImage];
+               // ALAssetRepresentation* r = [asset defaultRepresentation];
+               // NSLog(@"Loaded asset %@ at %@ size = %i, UTI = %@", [r filename], [r url], [r size], [r UTI]);
+              //  CGImageRef imgref = [r fullResolutionImage];
               //  UIImage* image = [UIImage imageWithCGImage:<#(CGImageRef)#>]
             };
             
@@ -58,7 +58,7 @@ ALAssetsLibrary* library;
     };
     
     ALAssetsLibraryAccessFailureBlock failureBlock = ^(NSError *error) {
-        NSLog(@"Failed loading group: err code @i", [error code]);
+      //  NSLog(@"Failed loading group: err code @i", [error code]);
 //        AssetsDataIsInaccessibleViewController *assetsDataInaccessibleViewController = [[AssetsDataIsInaccessibleViewController alloc] initWithNibName:@"AssetsDataIsInaccessibleViewController" bundle:nil];
 //        
 //        NSString *errorMessage = nil;
@@ -81,7 +81,7 @@ ALAssetsLibrary* library;
     [library enumerateGroupsWithTypes: ALAssetsGroupSavedPhotos usingBlock: listGroupBlock failureBlock: failureBlock];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
@@ -91,7 +91,7 @@ ALAssetsLibrary* library;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
-}
+}*/
 
 
 @end

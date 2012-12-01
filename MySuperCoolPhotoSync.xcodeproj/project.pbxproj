@@ -18,6 +18,7 @@
 		843D3204165967AA005108A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D3203165967AA005108A6 /* Default-568h@2x.png */; };
 		843D3207165967AA005108A6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D3205165967AA005108A6 /* MainStoryboard.storyboard */; };
 		843D320A165967AA005108A6 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843D3209165967AA005108A6 /* CViewController.m */; };
+		84CAAE42166A993100F9BF90 /* CPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAAE41166A993100F9BF90 /* CPhotoList.m */; };
 		84D59D251659973C008FB9A4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D59D241659973C008FB9A4 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 		843D3206165967AA005108A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		843D3208165967AA005108A6 /* CViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CViewController.h; sourceTree = "<group>"; };
 		843D3209165967AA005108A6 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
+		84CAAE40166A993100F9BF90 /* CPhotoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPhotoList.h; sourceTree = "<group>"; };
+		84CAAE41166A993100F9BF90 /* CPhotoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPhotoList.m; sourceTree = "<group>"; };
 		84D59D241659973C008FB9A4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -93,6 +96,8 @@
 				843D3208165967AA005108A6 /* CViewController.h */,
 				843D3209165967AA005108A6 /* CViewController.m */,
 				843D31F4165967A9005108A6 /* Supporting Files */,
+				84CAAE40166A993100F9BF90 /* CPhotoList.h */,
+				84CAAE41166A993100F9BF90 /* CPhotoList.m */,
 			);
 			path = MySuperCoolPhotoSync;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				843D31FA165967A9005108A6 /* main.m in Sources */,
 				843D31FE165967AA005108A6 /* CAppDelegate.m in Sources */,
 				843D320A165967AA005108A6 /* CViewController.m in Sources */,
+				84CAAE42166A993100F9BF90 /* CPhotoList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
