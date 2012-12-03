@@ -11,12 +11,19 @@
 
 @implementation CPhotoList
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
-    library = [[ALAssetsLibrary alloc] init];
-    assets = [NSMutableArray arrayWithCapacity:10];
+    if (!library) {
+        library = [[ALAssetsLibrary alloc] init];
+    }
+    
+    if (assets) {
+        [assets removeAllObjects];
+    } else {
+        assets = [NSMutableArray arrayWithCapacity:10];
+    }
     
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
@@ -30,6 +37,8 @@
             };
             
             [group enumerateAssetsUsingBlock: listAssetsBlock];
+        } else {
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
         }
     };
     
@@ -43,8 +52,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)i {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
+- (UITableViewCell *)tableView:(UITableView *)p_tableView cellForRowAtIndexPath:(NSIndexPath *)i {
+    UITableViewCell *cell = [p_tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -52,7 +61,7 @@
     ALAsset* asset = [assets objectAtIndex: [i item]];
     ALAssetRepresentation* representation = [asset defaultRepresentation];
     cell.textLabel.text = [representation filename];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lli", [representation size]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f KB", [representation size] / 1024.0];
     cell.imageView.image = [UIImage imageWithCGImage: [asset thumbnail]];
     return cell;
 }

@@ -12,7 +12,6 @@
 @interface CPhotoList : UITableViewController {
     ALAssetsLibrary* library;
     NSMutableArray* assets;
-    __weak IBOutlet UITableView *tableView;
 }
 
 @end
