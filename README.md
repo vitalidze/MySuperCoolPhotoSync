@@ -23,11 +23,11 @@
 
 ![Sync screen](https://raw.github.com/vitalidze/osx-project-2/master/sync-screen.png)
 
-Синхронизация происходит после нажатия на кнопку "Sync". В строках таблицы, которые в данный момент закачиваются на компьютер появляется progress bar с индикацией оставшегося времени.
+Синхронизация происходит после нажатия на кнопку "Do Sync". В строках таблицы, которые в данный момент закачиваются на компьютер появляется progress bar с индикацией оставшегося времени.
 
 ### Экран настроек
 
-![Sync screen](https://raw.github.com/vitalidze/osx-project-2/master/settings-screen.png)
+![Settings screen](https://raw.github.com/vitalidze/osx-project-2/master/settings-screen.png)
 
 * В поле "Enter server address here" вводится IP адрес или доменное имя комьютера, на который нужно закачать фотографии.
 
