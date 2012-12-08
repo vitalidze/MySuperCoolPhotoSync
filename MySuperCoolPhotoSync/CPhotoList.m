@@ -25,6 +25,10 @@
         assets = [NSMutableArray arrayWithCapacity:10];
     }
     
+    if (!syncManager) {
+        syncManager = [[CSyncManager alloc] init];
+    }
+    
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             NSLog(@"Loaded group %@", group);
@@ -46,6 +50,10 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction) doSync:(id)sender {
+    [syncManager syncAssets: assets];
+} 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,7 +69,7 @@
     ALAsset* asset = [assets objectAtIndex: [i item]];
     ALAssetRepresentation* representation = [asset defaultRepresentation];
     cell.textLabel.text = [representation filename];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f KB", [representation size] / 1024.0];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Synced: %@, Size: %.1f KB", [syncManager isSynced: asset] ? @"yes" : @"no", [representation size] / 1024.0];
     cell.imageView.image = [UIImage imageWithCGImage: [asset thumbnail]];
     return cell;
 }
