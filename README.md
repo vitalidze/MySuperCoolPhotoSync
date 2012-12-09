@@ -37,4 +37,4 @@
 
 * Video sync - если включено, то помимо фотографий на компьютер будет загружено вс] видео с iPhone.
 
-### [Roadmap]:https://github.com/vitalidze/osx-project-2/wiki/Roadmap
+### [Roadmap]: https://github.com/vitalidze/osx-project-2/wiki/Roadmap
