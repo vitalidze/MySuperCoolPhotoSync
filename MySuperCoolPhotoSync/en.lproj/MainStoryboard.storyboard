@@ -69,8 +69,15 @@
                     <navigationItem key="navigationItem" title="Settings" id="I7q-UH-r54"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mnn-VH-JuD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="3OW-gv-sKk">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="E9B-iv-DPw"/>
+                    </items>
+                </navigationBar>
             </objects>
-            <point key="canvasLocation" x="1134" y="-95"/>
+            <point key="canvasLocation" x="1135" y="-76"/>
         </scene>
         <!--Photo List - Asset List-->
         <scene sceneID="Aao-XU-O2E">
@@ -113,9 +120,18 @@
         <scene sceneID="x2x-d0-PFF">
             <objects>
                 <navigationController definesPresentationContext="YES" id="59h-xb-0ua" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ACO-X6-rQW">
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="ACO-X6-rQW">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="2oi-Ad-j9k">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="cAg-GS-wPk" kind="relationship" relationship="rootViewController" id="tAR-F5-OUD"/>
                     </connections>

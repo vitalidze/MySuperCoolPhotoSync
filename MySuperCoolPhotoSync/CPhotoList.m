@@ -51,7 +51,14 @@
 }
 
 - (IBAction) doSync:(id)sender {
-    [syncManager syncAssets: assets];
+    //[syncManager syncAssets: assets];
+
+    UIBarButtonItem* buttonStop = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem* progressBar = [[UIBarButtonItem alloc] initWithCustomView: [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleBar]];
+    [progressBar setWidth: 245.0];
+    
+    [self.navigationController setToolbarHidden: ![self.navigationController isToolbarHidden] animated:YES];
+    self.navigationController.toolbar.items = [NSArray arrayWithObjects:buttonStop, progressBar, nil];
 } 
 
 - (void)didReceiveMemoryWarning
