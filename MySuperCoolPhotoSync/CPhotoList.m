@@ -29,6 +29,12 @@
         syncManager = [[CSyncManager alloc] init];
     }
     
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+    
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             NSLog(@"Loaded group %@", group);
@@ -75,9 +81,15 @@
     }
     ALAsset* asset = [assets objectAtIndex: [i item]];
     ALAssetRepresentation* representation = [asset defaultRepresentation];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/YY HH:mm:ss"];
+    NSDate * date = [asset valueForProperty:ALAssetPropertyDate];
+    
     cell.textLabel.text = [representation filename];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Synced: %@, Size: %.1f KB", [syncManager isSynced: asset] ? @"yes" : @"no", [representation size] / 1024.0];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %.1f KB", [dateFormatter stringFromDate:date], [representation size] / 1024.0];
     cell.imageView.image = [UIImage imageWithCGImage: [asset thumbnail]];
+    
+    
     return cell;
 }
 

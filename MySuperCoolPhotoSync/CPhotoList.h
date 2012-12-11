@@ -13,6 +13,7 @@
 @interface CPhotoList : UITableViewController {
     ALAssetsLibrary* library;
     NSMutableArray* assets;
+    NSDateFormatter* dateFormatter;
     CSyncManager* syncManager;
 }
 - (IBAction)doSync:(id)sender;
