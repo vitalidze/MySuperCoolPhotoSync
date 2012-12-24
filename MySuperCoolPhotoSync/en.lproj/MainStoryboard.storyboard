@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Settings-->
+        <!--Settings Controller - Settings-->
         <scene sceneID="aaV-OH-RjX">
             <objects>
-                <viewController id="1ta-2W-L6g" sceneMemberID="viewController">
+                <viewController id="1ta-2W-L6g" customClass="CSettingsController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="85d-31-tA4">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -15,10 +15,25 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter server address here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1v-pH-HBj">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="serverAddressEntered:" destination="1ta-2W-L6g" eventType="editingDidEnd" id="eUk-6B-kfL"/>
+                                </connections>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4My-NH-g2c"/>
-                            <switch opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="01k-QT-DqI"/>
-                            <switch opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K0m-PG-jWg"/>
+                            <switch opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4My-NH-g2c">
+                                <connections>
+                                    <action selector="backgroundSyncOptionChanged:" destination="1ta-2W-L6g" eventType="valueChanged" id="UHD-M5-lNS"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="01k-QT-DqI">
+                                <connections>
+                                    <action selector="albumSyncOptionChanged:" destination="1ta-2W-L6g" eventType="valueChanged" id="nuD-5d-teu"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="K0m-PG-jWg">
+                                <connections>
+                                    <action selector="videoSyncOptionChanged:" destination="1ta-2W-L6g" eventType="valueChanged" id="fZe-jv-Avi"/>
+                                </connections>
+                            </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background sync" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6M6-Sq-DfH">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -67,6 +82,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="mam-k6-dne"/>
                     <navigationItem key="navigationItem" title="Settings" id="I7q-UH-r54"/>
+                    <connections>
+                        <outlet property="fldServerAddress" destination="x1v-pH-HBj" id="78b-EK-aGf"/>
+                        <outlet property="swAlbumSync" destination="01k-QT-DqI" id="hMc-3B-fZD"/>
+                        <outlet property="swBackgroundSync" destination="4My-NH-g2c" id="97R-u4-PvL"/>
+                        <outlet property="swVideoSync" destination="K0m-PG-jWg" id="l3A-s2-uad"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mnn-VH-JuD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationBar contentMode="scaleToFill" id="3OW-gv-sKk">
@@ -111,6 +132,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnDoSync" destination="TMr-tR-JjX" id="R6u-26-p6p"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pfm-Ov-hcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -141,17 +165,6 @@
             <point key="canvasLocation" x="208" y="-86"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CPhotoList" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPhotoList.h"/>
-            <relationships>
-                <relationship kind="action" name="doSync:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

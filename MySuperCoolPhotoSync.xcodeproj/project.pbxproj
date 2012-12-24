@@ -33,6 +33,7 @@
 		84C7DE721673C3E30056789A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7DE711673C3E30056789A /* libz.dylib */; };
 		84CAAE42166A993100F9BF90 /* CPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAAE41166A993100F9BF90 /* CPhotoList.m */; };
 		84D59D251659973C008FB9A4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D59D241659973C008FB9A4 /* AssetsLibrary.framework */; };
+		84DAA7341688FAAC00EC77EE /* CSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DAA7331688FAAC00EC77EE /* CSettingsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,9 @@
 		84CAAE40166A993100F9BF90 /* CPhotoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPhotoList.h; sourceTree = "<group>"; };
 		84CAAE41166A993100F9BF90 /* CPhotoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPhotoList.m; sourceTree = "<group>"; };
 		84D59D241659973C008FB9A4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		84DAA7321688FAAC00EC77EE /* CSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSettingsController.h; sourceTree = "<group>"; };
+		84DAA7331688FAAC00EC77EE /* CSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSettingsController.m; sourceTree = "<group>"; };
+		84DAA73616891A7F00EC77EE /* IProgressListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IProgressListener.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +144,11 @@
 				84C7DE2F1673C2FA0056789A /* ASI */,
 				843D31FC165967AA005108A6 /* CAppDelegate.h */,
 				843D31FD165967AA005108A6 /* CAppDelegate.m */,
+				84DAA7321688FAAC00EC77EE /* CSettingsController.h */,
+				84DAA7331688FAAC00EC77EE /* CSettingsController.m */,
 				84C7DE2C1673AEDA0056789A /* CSyncManager.h */,
 				84C7DE2D1673AEDA0056789A /* CSyncManager.m */,
+				84DAA73616891A7F00EC77EE /* IProgressListener.h */,
 				843D3205165967AA005108A6 /* MainStoryboard.storyboard */,
 				843D31F4165967A9005108A6 /* Supporting Files */,
 				84CAAE40166A993100F9BF90 /* CPhotoList.h */,
@@ -273,6 +280,7 @@
 				84C7DE661673C3580056789A /* ASIInputStream.m in Sources */,
 				84C7DE671673C3580056789A /* ASINetworkQueue.m in Sources */,
 				84C7DE6A1673C3720056789A /* Reachability.m in Sources */,
+				84DAA7341688FAAC00EC77EE /* CSettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

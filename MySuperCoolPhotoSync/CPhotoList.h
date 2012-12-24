@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "CSyncManager.h"
+#import "IProgressListener.h";
 
-@interface CPhotoList : UITableViewController {
+
+@interface CPhotoList : UITableViewController <IProgressListener> {
     ALAssetsLibrary* library;
     NSMutableArray* assets;
     NSDateFormatter* dateFormatter;
     CSyncManager* syncManager;
+    UIActivityIndicatorView* activityIndicator;
+    UIProgressView* progressView;
+    __weak IBOutlet UIBarButtonItem *btnDoSync;
 }
 - (IBAction)doSync:(id)sender;
 

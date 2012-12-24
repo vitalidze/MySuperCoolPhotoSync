@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "ISyncProgressListener.h"
+#import "IProgressListener.h"
 
 @interface CSyncManager : NSObject 
--(void)syncAssets: (NSMutableArray*) assets;
+-(void)syncAssets: (NSMutableArray*) assets withProgressListener: (id<IProgressListener>) progressListener;
 -(BOOL)isSynced: (ALAsset*) asset;
 @end

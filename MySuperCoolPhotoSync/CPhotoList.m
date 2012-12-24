@@ -35,6 +35,14 @@
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     }
     
+    if (!activityIndicator) {
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    }
+    
+    if (!progressView) {
+        progressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleBar];
+    }
+    
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             NSLog(@"Loaded group %@", group);
@@ -43,7 +51,7 @@
                 if (asset != nil) {
                     [assets addObject: asset];
                 }
-                NSLog(@"Assets count %i", assets.count);
+//                NSLog(@"Assets count %i", assets.count);
             };
             
             [group enumerateAssetsUsingBlock: listAssetsBlock];
@@ -57,15 +65,40 @@
 }
 
 - (IBAction) doSync:(id)sender {
-    //[syncManager syncAssets: assets];
-
     UIBarButtonItem* buttonStop = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStylePlain target:nil action:nil];
-    UIBarButtonItem* progressBar = [[UIBarButtonItem alloc] initWithCustomView: [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleBar]];
+    
+    UIBarButtonItem* progressBar = [[UIBarButtonItem alloc] initWithCustomView: progressView];
     [progressBar setWidth: 245.0];
     
-    [self.navigationController setToolbarHidden: ![self.navigationController isToolbarHidden] animated:YES];
+    [self.navigationController setToolbarHidden: NO animated:YES];
     self.navigationController.toolbar.items = [NSArray arrayWithObjects:buttonStop, progressBar, nil];
-} 
+    
+    btnDoSync.customView = activityIndicator;
+    
+    activityIndicator.hidden = NO;
+    [activityIndicator startAnimating];
+
+    [self performSelectorInBackground:@selector(syncAssetsThreaded) withObject: nil];
+}
+
+- (void) syncAssetsThreaded {
+    [syncManager syncAssets:assets withProgressListener: self];
+    
+    [self performSelectorOnMainThread:@selector(syncFinished) withObject: nil waitUntilDone:NO];
+}
+
+- (void) syncFinished {
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
+    
+    btnDoSync.customView = nil;
+    
+    [self.navigationController setToolbarHidden: YES animated:YES];
+}
+
+- (void) progressChanged: (NSNumber*) progress {
+    [progressView setProgress: [progress floatValue]];
+}
 
 - (void)didReceiveMemoryWarning
 {

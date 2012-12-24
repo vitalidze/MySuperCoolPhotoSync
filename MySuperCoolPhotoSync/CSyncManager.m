@@ -7,6 +7,7 @@
 //
 
 #import "CSyncManager.h"
+#import "CSettingsController.h"
 #import "ASIFormDataRequest.h"
 
 @implementation CSyncManager
@@ -20,12 +21,22 @@
     return self;
 }
 
--(void)syncAssets:(NSMutableArray *)assets {
+-(void)syncAssets: (NSMutableArray *)assets withProgressListener:(id<IProgressListener>)progressListener {
     
     NSLog(@"Syncing...");
-    NSURL* url = [NSURL URLWithString:@"http://localhost:8080/sync"];
+    NSString* urlAddress = [NSString stringWithFormat:@"http://%@/sync", [CSettingsController getServerAddress]];
+    NSURL* url = [NSURL URLWithString: urlAddress];
+    
+    [progressListener progressChanged: [NSNumber numberWithFloat:0.0]];
+    int count = 0;
+    
     
     for (ALAsset* asset in assets) {
+        float progress = (float) count++ / [assets count];
+        [progressListener progressChanged: [NSNumber numberWithFloat: progress]];
+        
+        NSLog(@"Progress: %f", progress);
+        
         if ([self isSynced: asset]) {
             continue;
         }
@@ -48,6 +59,10 @@
             NSLog(@"%@", error);
         }
     }
+}
+
+-(void) updateProgress: (id) progressView {
+    
 }
 
 -(BOOL)isSynced:(ALAsset *)asset {
