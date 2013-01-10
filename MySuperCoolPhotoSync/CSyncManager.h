@@ -11,6 +11,6 @@
 #import "IProgressListener.h"
 
 @interface CSyncManager : NSObject 
--(void)syncAssets: (NSMutableArray*) assets withProgressListener: (id<IProgressListener>) progressListener;
+-(void)syncAssets: (NSMutableArray*) assets withProgressListenerObject: (id) progressListener andMethod: (SEL) progressChangedMethod;
 -(BOOL)isSynced: (ALAsset*) asset;
 @end

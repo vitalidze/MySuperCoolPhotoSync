@@ -8,7 +8,6 @@
 
 #import "CSyncManager.h"
 #import "CSettingsController.h"
-#import "ASIFormDataRequest.h"
 
 @implementation CSyncManager
 
@@ -21,21 +20,18 @@
     return self;
 }
 
--(void)syncAssets: (NSMutableArray *)assets withProgressListener:(id<IProgressListener>)progressListener {
+-(void)syncAssets: (NSMutableArray *)assets withProgressListenerObject: (id) progressListener andMethod:(SEL) progressChangedMethod {
     
     NSLog(@"Syncing...");
     NSString* urlAddress = [NSString stringWithFormat:@"http://%@/sync", [CSettingsController getServerAddress]];
-    NSURL* url = [NSURL URLWithString: urlAddress];
     
-    [progressListener progressChanged: [NSNumber numberWithFloat:0.0]];
+    [progressListener performSelectorOnMainThread: progressChangedMethod withObject:[NSNumber numberWithFloat: 0.0] waitUntilDone:YES];
     int count = 0;
     
     
     for (ALAsset* asset in assets) {
-        float progress = (float) count++ / [assets count];
-        [progressListener progressChanged: [NSNumber numberWithFloat: progress]];
-        
-        NSLog(@"Progress: %f", progress);
+        float progress = (float) ++count / [assets count];
+        [progressListener performSelectorOnMainThread: progressChangedMethod withObject:[NSNumber numberWithFloat: progress] waitUntilDone:YES];
         
         if ([self isSynced: asset]) {
             continue;
@@ -43,17 +39,11 @@
         
         ALAssetRepresentation* representation = [asset defaultRepresentation];
         
-        ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:url];
-        [request setRequestMethod: @"POST"];
-        
         UIImage *img = [UIImage imageWithCGImage:[representation fullResolutionImage]];
-        //[request appendPostData: UIImageJPEGRepresentation(img, 1.0)];
-        [request setData:UIImageJPEGRepresentation(img, 1.0) withFileName:[representation filename] andContentType:@"multipart/form-data" forKey:@"file"];
-        [request startSynchronous];
-        
-        NSError *error = [request error];
+        NSError* error;
+         
+        NSString* response = [self uploadImage: img toUrl: urlAddress withFileName: [representation filename] error: &error];
         if (!error) {
-            NSString *response = [request responseString];
             NSLog(@"Response: %@", response);
         } else {
             NSLog(@"%@", error);
@@ -61,16 +51,40 @@
     }
 }
 
--(void) updateProgress: (id) progressView {
+-(NSString*) uploadImage: (UIImage*) image toUrl: (NSString*) urlString withFileName: (NSString*) fileName error: (NSError**) error {
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0); // convert image in NSData
     
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+    
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString *imgNameString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", fileName];
+    [body appendData:[[NSString stringWithString:imgNameString] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:imageData]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:body];
+    
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error: error];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    
+    return returnString;
 }
 
 -(BOOL)isSynced:(ALAsset *)asset {
     ALAssetRepresentation* representation = [asset defaultRepresentation];
     
-    NSString* strUrl = [NSString stringWithFormat:@"http://localhost:8080/is_synced?fileName=%@", [representation filename]];
+    NSString* urlAddress = [NSString stringWithFormat:@"http://%@/is_synced?fileName=%@", [CSettingsController getServerAddress], [representation filename]];
     
-    NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString:strUrl]];
+    NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString:urlAddress]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString* strResponse = [[NSString alloc] initWithData: response encoding: NSUTF8StringEncoding];
 

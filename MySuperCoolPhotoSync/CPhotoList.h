@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "CSyncManager.h"
-#import "IProgressListener.h";
 
 
-@interface CPhotoList : UITableViewController <IProgressListener> {
+@interface CPhotoList : UITableViewController {
     ALAssetsLibrary* library;
     NSMutableArray* assets;
     NSDateFormatter* dateFormatter;

@@ -48,7 +48,7 @@
             NSLog(@"Loaded group %@", group);
             
             ALAssetsGroupEnumerationResultsBlock listAssetsBlock = ^(ALAsset* asset, NSUInteger index, BOOL *stop) {
-                if (asset != nil) {
+                if (asset != nil && ![syncManager isSynced: asset]) {
                     [assets addObject: asset];
                 }
 //                NSLog(@"Assets count %i", assets.count);
@@ -82,7 +82,7 @@
 }
 
 - (void) syncAssetsThreaded {
-    [syncManager syncAssets:assets withProgressListener: self];
+    [syncManager syncAssets:assets withProgressListenerObject: self andMethod: @selector(progressChanged:)];
     
     [self performSelectorOnMainThread:@selector(syncFinished) withObject: nil waitUntilDone:NO];
 }
