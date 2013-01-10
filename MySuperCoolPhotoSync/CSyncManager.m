@@ -36,7 +36,9 @@
     int count = 0;
     
     
-    for (CAsset* asset in assets) {
+    for (int i = 0; i < [assets count]; i++) {
+        CAsset* asset = [assets objectAtIndex: i];
+        
         float progress = (float) ++count / [assets count];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -48,6 +50,9 @@
         }
         
         asset.syncing = YES;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [table reloadRowsAtIndexPaths: [NSArray arrayWithObject: asset.indexPath] withRowAnimation: UITableViewRowAnimationNone];
+        });
         
         NSError* error;
          
@@ -61,6 +66,10 @@
         } else {
             NSLog(@"%@", error);
         }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [table reloadRowsAtIndexPaths: [NSArray arrayWithObject: asset.indexPath] withRowAnimation: UITableViewRowAnimationNone];
+        });
     }
 }
 

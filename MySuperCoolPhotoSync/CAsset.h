@@ -13,6 +13,7 @@
 @property ALAsset* asset;
 @property BOOL synced;
 @property BOOL syncing;
+@property NSIndexPath* indexPath;
 
 -(NSData*) getFileData;
 -(NSString*) getFileName;

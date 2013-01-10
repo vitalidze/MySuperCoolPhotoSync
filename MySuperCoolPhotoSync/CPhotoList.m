@@ -123,15 +123,21 @@
         [cell setAccessoryView: nil];
     }
     
+    if ([asset synced]) {
+        cell.textLabel.enabled = NO;
+        cell.detailTextLabel.enabled = NO;
+        cell.imageView.alpha = 0.2;
+    }
+    
+    if (asset.indexPath == nil) {
+        asset.indexPath = i;
+    }
+    
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return assets.count;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
 }
 
 @end
