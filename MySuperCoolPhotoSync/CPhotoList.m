@@ -82,7 +82,7 @@
 }
 
 - (void) syncAssetsThreaded {
-    [syncManager syncAssets:assets withProgressListenerObject: self andMethod: @selector(progressChanged:)];
+    [syncManager syncAssets:assets progressBar: progressView table: [self tableView]];
     
     [self performSelectorOnMainThread:@selector(syncFinished) withObject: nil waitUntilDone:NO];
 }
@@ -94,10 +94,6 @@
     btnDoSync.customView = nil;
     
     [self.navigationController setToolbarHidden: YES animated:YES];
-}
-
-- (void) progressChanged: (NSNumber*) progress {
-    [progressView setProgress: [progress floatValue]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -119,6 +115,14 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %.1f KB", [asset getFileDate], [asset getFileSize] / 1024.0];
     cell.imageView.image = [asset getThumbnail];
     
+    if ([asset syncing]) {
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [activityView startAnimating];
+        [cell setAccessoryView:activityView];
+    } else {
+        [cell setAccessoryView: nil];
+    }
+    
     return cell;
 }
 
@@ -127,13 +131,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [activityView startAnimating];
-    [cell setAccessoryView:activityView];
-    
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
 }
 

@@ -20,28 +20,44 @@
     return self;
 }
 
--(void)syncAssets: (NSMutableArray *)assets withProgressListenerObject: (id) progressListener andMethod:(SEL) progressChangedMethod {
+- (void) progressChanged: (NSNumber*) progress {
+    
+}
+
+-(void)syncAssets: (NSMutableArray *)assets progressBar:(UIProgressView *)progressBar table:(UITableView *)table {
     
     NSLog(@"Syncing...");
     NSString* urlAddress = [NSString stringWithFormat:@"http://%@/sync", [CSettingsController getServerAddress]];
     
-    [progressListener performSelectorOnMainThread: progressChangedMethod withObject:[NSNumber numberWithFloat: 0.0] waitUntilDone:YES];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [progressBar setProgress: 0];
+	});
+    
     int count = 0;
     
     
     for (CAsset* asset in assets) {
         float progress = (float) ++count / [assets count];
-        [progressListener performSelectorOnMainThread: progressChangedMethod withObject:[NSNumber numberWithFloat: progress] waitUntilDone:YES];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [progressBar setProgress: progress];
+        });
         
         if ([self isSynced: asset]) {
             continue;
         }
         
+        asset.syncing = YES;
+        
         NSError* error;
          
         NSString* response = [self uploadAsset: asset toUrl: urlAddress error: &error];
+        
+        asset.syncing = NO;
+        
         if (!error) {
             NSLog(@"Response: %@", response);
+            asset.synced = YES;
         } else {
             NSLog(@"%@", error);
         }
@@ -62,6 +78,7 @@
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
+    // TODO change content-disposition to appropriate file type
     NSString *imgNameString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", [asset getFileName]];
     [body appendData:[[NSString stringWithString:imgNameString] dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -77,16 +94,19 @@
 }
 
 -(BOOL)isSynced:(CAsset*) asset {
-    NSString* urlAddress = [NSString stringWithFormat:@"http://%@/is_synced?fileName=%@", [CSettingsController getServerAddress], [asset getFileName]];
+    if (!asset.synced) {
+        NSString* urlAddress = [NSString stringWithFormat:@"http://%@/is_synced?fileName=%@", [CSettingsController getServerAddress], [asset getFileName]];
     
-    NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString:urlAddress]];
-    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSString* strResponse = [[NSString alloc] initWithData: response encoding: NSUTF8StringEncoding];
+        NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString:urlAddress]];
+        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+        NSString* strResponse = [[NSString alloc] initWithData: response encoding: NSUTF8StringEncoding];
 
-    //NSError *jsonParsingError = nil;
-    //BOOL isSyncedResponse = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
+        //NSError *jsonParsingError = nil;
+        //BOOL isSyncedResponse = [NSJSONSerialization JSONObjectWithData:response options:0 error:&jsonParsingError];
+        asset.synced = [strResponse isEqualToString: @"true"];
+    }
     
-    return [strResponse isEqualToString: @"true"];
+    return asset.synced;
 }
 
 @end

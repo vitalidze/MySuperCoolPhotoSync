@@ -10,6 +10,6 @@
 #import "CAsset.h"
 
 @interface CSyncManager : NSObject 
--(void)syncAssets: (NSMutableArray*) assets withProgressListenerObject: (id) progressListener andMethod: (SEL) progressChangedMethod;
+-(void)syncAssets: (NSMutableArray*) assets progressBar: (UIProgressView*) progressBar table: (UITableView*) table;
 -(BOOL)isSynced: (CAsset*) asset;
 @end
