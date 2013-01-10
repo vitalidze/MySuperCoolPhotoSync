@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-#import "IProgressListener.h"
+#import "CAsset.h"
 
 @interface CSyncManager : NSObject 
 -(void)syncAssets: (NSMutableArray*) assets withProgressListenerObject: (id) progressListener andMethod: (SEL) progressChangedMethod;
--(BOOL)isSynced: (ALAsset*) asset;
+-(BOOL)isSynced: (CAsset*) asset;
 @end

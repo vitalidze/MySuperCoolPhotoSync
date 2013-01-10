@@ -20,6 +20,7 @@
 		84CAAE42166A993100F9BF90 /* CPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAAE41166A993100F9BF90 /* CPhotoList.m */; };
 		84D59D251659973C008FB9A4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D59D241659973C008FB9A4 /* AssetsLibrary.framework */; };
 		84DAA7341688FAAC00EC77EE /* CSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DAA7331688FAAC00EC77EE /* CSettingsController.m */; };
+		84E35B16169F573A00A9B158 /* CAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E35B15169F573A00A9B158 /* CAsset.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		84D59D241659973C008FB9A4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		84DAA7321688FAAC00EC77EE /* CSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSettingsController.h; sourceTree = "<group>"; };
 		84DAA7331688FAAC00EC77EE /* CSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSettingsController.m; sourceTree = "<group>"; };
+		84E35B14169F573A00A9B158 /* CAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAsset.h; sourceTree = "<group>"; };
+		84E35B15169F573A00A9B158 /* CAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAsset.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				843D31FC165967AA005108A6 /* CAppDelegate.h */,
+				84E35B14169F573A00A9B158 /* CAsset.h */,
+				84E35B15169F573A00A9B158 /* CAsset.m */,
 				843D31FD165967AA005108A6 /* CAppDelegate.m */,
 				84DAA7321688FAAC00EC77EE /* CSettingsController.h */,
 				84DAA7331688FAAC00EC77EE /* CSettingsController.m */,
@@ -199,6 +204,7 @@
 				84CAAE42166A993100F9BF90 /* CPhotoList.m in Sources */,
 				84C7DE2E1673AEDA0056789A /* CSyncManager.m in Sources */,
 				84DAA7341688FAAC00EC77EE /* CSettingsController.m in Sources */,
+				84E35B16169F573A00A9B158 /* CAsset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

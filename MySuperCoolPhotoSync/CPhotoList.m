@@ -48,8 +48,8 @@
             NSLog(@"Loaded group %@", group);
             
             ALAssetsGroupEnumerationResultsBlock listAssetsBlock = ^(ALAsset* asset, NSUInteger index, BOOL *stop) {
-                if (asset != nil && ![syncManager isSynced: asset]) {
-                    [assets addObject: asset];
+                if (asset != nil) {// && ![syncManager isSynced: asset]) {
+                    [assets addObject: [CAsset initWithALAsset: asset]];
                 }
 //                NSLog(@"Assets count %i", assets.count);
             };
@@ -112,22 +112,29 @@
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    ALAsset* asset = [assets objectAtIndex: [i item]];
-    ALAssetRepresentation* representation = [asset defaultRepresentation];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/YY HH:mm:ss"];
-    NSDate * date = [asset valueForProperty:ALAssetPropertyDate];
     
-    cell.textLabel.text = [representation filename];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %.1f KB", [dateFormatter stringFromDate:date], [representation size] / 1024.0];
-    cell.imageView.image = [UIImage imageWithCGImage: [asset thumbnail]];
+    CAsset* asset = [assets objectAtIndex: [i item]];
     
+    cell.textLabel.text = [asset getFileName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %.1f KB", [asset getFileDate], [asset getFileSize] / 1024.0];
+    cell.imageView.image = [asset getThumbnail];
     
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return assets.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activityView startAnimating];
+    [cell setAccessoryView:activityView];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    
 }
 
 @end

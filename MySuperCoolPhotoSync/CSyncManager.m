@@ -29,7 +29,7 @@
     int count = 0;
     
     
-    for (ALAsset* asset in assets) {
+    for (CAsset* asset in assets) {
         float progress = (float) ++count / [assets count];
         [progressListener performSelectorOnMainThread: progressChangedMethod withObject:[NSNumber numberWithFloat: progress] waitUntilDone:YES];
         
@@ -37,12 +37,9 @@
             continue;
         }
         
-        ALAssetRepresentation* representation = [asset defaultRepresentation];
-        
-        UIImage *img = [UIImage imageWithCGImage:[representation fullResolutionImage]];
         NSError* error;
          
-        NSString* response = [self uploadImage: img toUrl: urlAddress withFileName: [representation filename] error: &error];
+        NSString* response = [self uploadAsset: asset toUrl: urlAddress error: &error];
         if (!error) {
             NSLog(@"Response: %@", response);
         } else {
@@ -51,8 +48,8 @@
     }
 }
 
--(NSString*) uploadImage: (UIImage*) image toUrl: (NSString*) urlString withFileName: (NSString*) fileName error: (NSError**) error {
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0); // convert image in NSData
+-(NSString*) uploadAsset: (CAsset*) asset toUrl: (NSString*) urlString error: (NSError**) error {
+    NSData *imageData = [asset getFileData];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
@@ -65,7 +62,7 @@
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    NSString *imgNameString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", fileName];
+    NSString *imgNameString = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", [asset getFileName]];
     [body appendData:[[NSString stringWithString:imgNameString] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
@@ -79,10 +76,8 @@
     return returnString;
 }
 
--(BOOL)isSynced:(ALAsset *)asset {
-    ALAssetRepresentation* representation = [asset defaultRepresentation];
-    
-    NSString* urlAddress = [NSString stringWithFormat:@"http://%@/is_synced?fileName=%@", [CSettingsController getServerAddress], [representation filename]];
+-(BOOL)isSynced:(CAsset*) asset {
+    NSString* urlAddress = [NSString stringWithFormat:@"http://%@/is_synced?fileName=%@", [CSettingsController getServerAddress], [asset getFileName]];
     
     NSURLRequest* request = [NSURLRequest requestWithURL: [NSURL URLWithString:urlAddress]];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
