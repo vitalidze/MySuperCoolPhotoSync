@@ -54,7 +54,7 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (IBAction) doSync:(id)sender {    
+- (IBAction) doSync:(id)sender {
     [self.navigationController setToolbarHidden: NO animated:YES];
     self.navigationController.toolbar.items = progressView.barItems;
     

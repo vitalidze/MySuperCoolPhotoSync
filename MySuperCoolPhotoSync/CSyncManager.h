@@ -13,4 +13,5 @@
 @interface CSyncManager : NSObject 
 -(void)syncAssets: (NSMutableArray*) assets progressBar: (CProgressViewWithLabelAndCancelButton*) progressBar table: (UITableView*) table;
 -(BOOL)isSynced: (CAsset*) asset;
+-(BOOL)checkConnection: (NSString*) urlAddress;
 @end

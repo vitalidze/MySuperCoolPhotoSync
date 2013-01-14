@@ -8,6 +8,7 @@
 
 #import "CSyncManager.h"
 #import "CSettingsController.h"
+#import "Reachability.h"
 
 @interface SyncStopper : NSObject
 @property BOOL stopped;
@@ -43,9 +44,27 @@
 }
 
 -(void)syncAssets: (NSMutableArray *)assets progressBar:(CProgressViewWithLabelAndCancelButton*) progressBar table:(UITableView *)table {
+
+//    
+//    NetworkStatus status = [reach currentReachabilityStatus];
+//    
+//    if (status == NotReachable)
+//    {
+//        NSLog(@"Host is not reachable");
+//        return;
+//    }
+//    else if (status != ReachableViaWiFi)
+//    {
+//        NSLog(@"Host is not reachable via WiFi");
+//        return;
+//    }
     
     NSLog(@"Syncing...");
     NSString* urlAddress = [NSString stringWithFormat:@"http://%@/sync", [CSettingsController getServerAddress]];
+    
+    if (![self checkConnection: urlAddress]) {
+        return;
+    }
     
     // reset progress bar
     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -150,6 +169,60 @@
     }
     
     return asset.synced;
+}
+
+-(BOOL)checkConnection: (NSString*) urlAddress {
+    NSURL *url = [NSURL URLWithString:urlAddress];
+    
+    // allocate a reachability object
+    Reachability *reach = [Reachability reachabilityWithHostname: [url host]];
+    // tell the reachability that we DONT want to be reachable on 3G/EDGE/CDMA
+    reach.reachableOnWWAN = NO;
+    
+    if (![reach isReachable]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" message:[NSString stringWithFormat:@"Host '%@' is not available.", [url host]] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            
+            [alert show];
+        });
+        
+        return NO;
+    }
+    else if (![reach isReachableViaWiFi]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection" message:[NSString stringWithFormat:@"Host '%@' is not available via Wi-Fi.", [url host]] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            
+            [alert show];
+        });
+        
+        return NO;
+    }
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL: url];
+    NSHTTPURLResponse *response;
+    NSError *error;
+    [NSURLConnection sendSynchronousRequest: request returningResponse: &response error: &error];
+    
+    if (error != nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Service unavailable" message: [error localizedDescription] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            
+            [alert show];
+        });
+        
+        return NO;
+    }
+    else if (response.statusCode != 200) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Service unavailable" message: [NSString stringWithFormat: @"Status code: %i", [response statusCode]] delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            
+            [alert show];
+        });
+        
+        return NO;
+    }
+    
+    return response.statusCode == 200;
 }
 
 @end

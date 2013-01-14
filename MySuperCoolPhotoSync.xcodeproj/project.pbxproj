@@ -16,6 +16,8 @@
 		843D3202165967AA005108A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D3201165967AA005108A6 /* Default@2x.png */; };
 		843D3204165967AA005108A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D3203165967AA005108A6 /* Default-568h@2x.png */; };
 		843D3207165967AA005108A6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D3205165967AA005108A6 /* MainStoryboard.storyboard */; };
+		84653DD616A4C24F00BE8873 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 84653DD516A4C24F00BE8873 /* Reachability.m */; };
+		84653DD816A4C6CA00BE8873 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7DE6D1673C3B50056789A /* SystemConfiguration.framework */; };
 		848F7D7416A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 848F7D7316A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m */; };
 		84C7DE2E1673AEDA0056789A /* CSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C7DE2D1673AEDA0056789A /* CSyncManager.m */; };
 		84CAAE42166A993100F9BF90 /* CPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAAE41166A993100F9BF90 /* CPhotoList.m */; };
@@ -39,14 +41,13 @@
 		843D3201165967AA005108A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		843D3203165967AA005108A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		843D3206165967AA005108A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		84653DD416A4C24F00BE8873 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		84653DD516A4C24F00BE8873 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		848F7D7216A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProgressViewWithLabelAndCancelButton.h; path = ../CProgressViewWithLabelAndCancelButton.h; sourceTree = "<group>"; };
 		848F7D7316A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProgressViewWithLabelAndCancelButton.m; path = ../CProgressViewWithLabelAndCancelButton.m; sourceTree = "<group>"; };
 		84C7DE2C1673AEDA0056789A /* CSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSyncManager.h; sourceTree = "<group>"; };
 		84C7DE2D1673AEDA0056789A /* CSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSyncManager.m; sourceTree = "<group>"; };
-		84C7DE6B1673C3AB0056789A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		84C7DE6D1673C3B50056789A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		84C7DE6F1673C3BE0056789A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		84C7DE711673C3E30056789A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		84CAAE40166A993100F9BF90 /* CPhotoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPhotoList.h; sourceTree = "<group>"; };
 		84CAAE41166A993100F9BF90 /* CPhotoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPhotoList.m; sourceTree = "<group>"; };
 		84D59D241659973C008FB9A4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -61,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84653DD816A4C6CA00BE8873 /* SystemConfiguration.framework in Frameworks */,
 				84D59D251659973C008FB9A4 /* AssetsLibrary.framework in Frameworks */,
 				843D31EE165967A9005108A6 /* UIKit.framework in Frameworks */,
 				843D31F0165967A9005108A6 /* Foundation.framework in Frameworks */,
@@ -73,10 +75,7 @@
 		843D31DE165967A9005108A6 = {
 			isa = PBXGroup;
 			children = (
-				84C7DE711673C3E30056789A /* libz.dylib */,
-				84C7DE6F1673C3BE0056789A /* MobileCoreServices.framework */,
 				84C7DE6D1673C3B50056789A /* SystemConfiguration.framework */,
-				84C7DE6B1673C3AB0056789A /* CFNetwork.framework */,
 				84D59D241659973C008FB9A4 /* AssetsLibrary.framework */,
 				843D31F3165967A9005108A6 /* MySuperCoolPhotoSync */,
 				843D31EC165967A9005108A6 /* Frameworks */,
@@ -111,14 +110,14 @@
 				84E35B14169F573A00A9B158 /* CAsset.h */,
 				84E35B15169F573A00A9B158 /* CAsset.m */,
 				843D31FD165967AA005108A6 /* CAppDelegate.m */,
+				84CAAE40166A993100F9BF90 /* CPhotoList.h */,
+				84CAAE41166A993100F9BF90 /* CPhotoList.m */,
 				84DAA7321688FAAC00EC77EE /* CSettingsController.h */,
 				84DAA7331688FAAC00EC77EE /* CSettingsController.m */,
 				84C7DE2C1673AEDA0056789A /* CSyncManager.h */,
 				84C7DE2D1673AEDA0056789A /* CSyncManager.m */,
 				843D3205165967AA005108A6 /* MainStoryboard.storyboard */,
 				843D31F4165967A9005108A6 /* Supporting Files */,
-				84CAAE40166A993100F9BF90 /* CPhotoList.h */,
-				84CAAE41166A993100F9BF90 /* CPhotoList.m */,
 			);
 			path = MySuperCoolPhotoSync;
 			sourceTree = "<group>";
@@ -126,6 +125,8 @@
 		843D31F4165967A9005108A6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84653DD416A4C24F00BE8873 /* Reachability.h */,
+				84653DD516A4C24F00BE8873 /* Reachability.m */,
 				843D31F5165967A9005108A6 /* MySuperCoolPhotoSync-Info.plist */,
 				843D31F6165967A9005108A6 /* InfoPlist.strings */,
 				843D31F9165967A9005108A6 /* main.m */,
@@ -211,6 +212,7 @@
 				84DAA7341688FAAC00EC77EE /* CSettingsController.m in Sources */,
 				84E35B16169F573A00A9B158 /* CAsset.m in Sources */,
 				848F7D7416A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m in Sources */,
+				84653DD616A4C24F00BE8873 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
