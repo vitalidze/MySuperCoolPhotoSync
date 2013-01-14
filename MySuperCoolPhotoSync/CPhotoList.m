@@ -11,47 +11,37 @@
 
 @implementation CPhotoList
 
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    assets = [NSMutableArray arrayWithCapacity:10];
+    syncManager = [[CSyncManager alloc] init];
+    library = [[ALAssetsLibrary alloc] init];
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+    progressView = [[CProgressViewWithLabelAndCancelButton alloc] init];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    if (!library) {
-        library = [[ALAssetsLibrary alloc] init];
-    }
-    
-    if (assets) {
-        [assets removeAllObjects];
-    } else {
-        assets = [NSMutableArray arrayWithCapacity:10];
-    }
-    
-    if (!syncManager) {
-        syncManager = [[CSyncManager alloc] init];
-    }
-    
-    if (!dateFormatter) {
-        dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    }
-    
-    if (!activityIndicator) {
-        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    }
-    
-    if (!progressView) {
-        progressView = [[CProgressViewWithLabelAndCancelButton alloc] init];
-    }
+    [assets removeAllObjects];
     
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         if (group) {
             NSLog(@"Loaded group %@", group);
             
             ALAssetsGroupEnumerationResultsBlock listAssetsBlock = ^(ALAsset* asset, NSUInteger index, BOOL *stop) {
+                // TODO uncomment condition
                 if (asset != nil) {// && ![syncManager isSynced: asset]) {
                     [assets addObject: [CAsset initWithALAsset: asset]];
                 }
-//                NSLog(@"Assets count %i", assets.count);
             };
             
             [group enumerateAssetsUsingBlock: listAssetsBlock];
