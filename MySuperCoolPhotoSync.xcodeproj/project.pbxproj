@@ -16,6 +16,7 @@
 		843D3202165967AA005108A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D3201165967AA005108A6 /* Default@2x.png */; };
 		843D3204165967AA005108A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 843D3203165967AA005108A6 /* Default-568h@2x.png */; };
 		843D3207165967AA005108A6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843D3205165967AA005108A6 /* MainStoryboard.storyboard */; };
+		848F7D7416A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 848F7D7316A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m */; };
 		84C7DE2E1673AEDA0056789A /* CSyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C7DE2D1673AEDA0056789A /* CSyncManager.m */; };
 		84CAAE42166A993100F9BF90 /* CPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAAE41166A993100F9BF90 /* CPhotoList.m */; };
 		84D59D251659973C008FB9A4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D59D241659973C008FB9A4 /* AssetsLibrary.framework */; };
@@ -38,6 +39,8 @@
 		843D3201165967AA005108A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		843D3203165967AA005108A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		843D3206165967AA005108A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		848F7D7216A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CProgressViewWithLabelAndCancelButton.h; path = ../CProgressViewWithLabelAndCancelButton.h; sourceTree = "<group>"; };
+		848F7D7316A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CProgressViewWithLabelAndCancelButton.m; path = ../CProgressViewWithLabelAndCancelButton.m; sourceTree = "<group>"; };
 		84C7DE2C1673AEDA0056789A /* CSyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSyncManager.h; sourceTree = "<group>"; };
 		84C7DE2D1673AEDA0056789A /* CSyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSyncManager.m; sourceTree = "<group>"; };
 		84C7DE6B1673C3AB0056789A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -102,6 +105,8 @@
 		843D31F3165967A9005108A6 /* MySuperCoolPhotoSync */ = {
 			isa = PBXGroup;
 			children = (
+				848F7D7216A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.h */,
+				848F7D7316A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m */,
 				843D31FC165967AA005108A6 /* CAppDelegate.h */,
 				84E35B14169F573A00A9B158 /* CAsset.h */,
 				84E35B15169F573A00A9B158 /* CAsset.m */,
@@ -205,6 +210,7 @@
 				84C7DE2E1673AEDA0056789A /* CSyncManager.m in Sources */,
 				84DAA7341688FAAC00EC77EE /* CSettingsController.m in Sources */,
 				84E35B16169F573A00A9B158 /* CAsset.m in Sources */,
+				848F7D7416A21CA100E94F77 /* CProgressViewWithLabelAndCancelButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

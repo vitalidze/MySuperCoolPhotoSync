@@ -40,7 +40,7 @@
     }
     
     if (!progressView) {
-        progressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleBar];
+        progressView = [[CProgressViewWithLabelAndCancelButton alloc] init];
     }
     
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
@@ -64,14 +64,9 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (IBAction) doSync:(id)sender {
-    UIBarButtonItem* buttonStop = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    UIBarButtonItem* progressBar = [[UIBarButtonItem alloc] initWithCustomView: progressView];
-    [progressBar setWidth: 245.0];
-    
+- (IBAction) doSync:(id)sender {    
     [self.navigationController setToolbarHidden: NO animated:YES];
-    self.navigationController.toolbar.items = [NSArray arrayWithObjects:buttonStop, progressBar, nil];
+    self.navigationController.toolbar.items = progressView.barItems;
     
     btnDoSync.customView = activityIndicator;
     

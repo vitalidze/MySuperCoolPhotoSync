@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "CAsset.h"
+#import "CProgressViewWithLabelAndCancelButton.h"
 
 @interface CSyncManager : NSObject 
--(void)syncAssets: (NSMutableArray*) assets progressBar: (UIProgressView*) progressBar table: (UITableView*) table;
+-(void)syncAssets: (NSMutableArray*) assets progressBar: (CProgressViewWithLabelAndCancelButton*) progressBar table: (UITableView*) table;
 -(BOOL)isSynced: (CAsset*) asset;
 @end

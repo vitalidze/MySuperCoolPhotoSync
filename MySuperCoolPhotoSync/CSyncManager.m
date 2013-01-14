@@ -9,6 +9,28 @@
 #import "CSyncManager.h"
 #import "CSettingsController.h"
 
+@interface SyncStopper : NSObject
+@property BOOL stopped;
+-(void) stopPressed;
+@end
+
+@implementation SyncStopper
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.stopped = NO;
+    }
+    return self;
+}
+
+-(void) stopPressed {
+    self.stopped = YES;
+}
+
+@end
+
 @implementation CSyncManager
 
 - (id)init
@@ -20,56 +42,68 @@
     return self;
 }
 
-- (void) progressChanged: (NSNumber*) progress {
-    
-}
-
--(void)syncAssets: (NSMutableArray *)assets progressBar:(UIProgressView *)progressBar table:(UITableView *)table {
+-(void)syncAssets: (NSMutableArray *)assets progressBar:(CProgressViewWithLabelAndCancelButton*) progressBar table:(UITableView *)table {
     
     NSLog(@"Syncing...");
     NSString* urlAddress = [NSString stringWithFormat:@"http://%@/sync", [CSettingsController getServerAddress]];
     
+    // reset progress bar
     dispatch_sync(dispatch_get_main_queue(), ^{
         [progressBar setProgress: 0];
 	});
     
     int count = 0;
     
+    // initialize stopper object, used to stop synchrnonization cycle
+    SyncStopper *stopper = [[SyncStopper alloc] init];
+    [progressBar setStopTarget: stopper action: @selector(stopPressed)];
     
     for (int i = 0; i < [assets count]; i++) {
         CAsset* asset = [assets objectAtIndex: i];
         
         float progress = (float) ++count / [assets count];
         
+        // update progress bar
         dispatch_sync(dispatch_get_main_queue(), ^{
             [progressBar setProgress: progress];
+            [progressBar setText: [NSString stringWithFormat:@"Uploading %i of %i", i + 1, [assets count]]];
         });
         
+        // check whether asset is already synced
         if ([self isSynced: asset]) {
             continue;
         }
         
+        // set syncing attribute and update table UI
         asset.syncing = YES;
         dispatch_sync(dispatch_get_main_queue(), ^{
             [table reloadRowsAtIndexPaths: [NSArray arrayWithObject: asset.indexPath] withRowAnimation: UITableViewRowAnimationNone];
         });
         
+        // upload image
         NSError* error;
          
         NSString* response = [self uploadAsset: asset toUrl: urlAddress error: &error];
         
+        // update syncing attribute
         asset.syncing = NO;
-        
         if (!error) {
+            // update 'synced' attribute if no error happened
             NSLog(@"Response: %@", response);
             asset.synced = YES;
         } else {
             NSLog(@"%@", error);
         }
         
+        // update table UI
         dispatch_sync(dispatch_get_main_queue(), ^{
             [table reloadRowsAtIndexPaths: [NSArray arrayWithObject: asset.indexPath] withRowAnimation: UITableViewRowAnimationNone];
         });
+        
+        // stop if stop button was pressed
+        if ([stopper stopped]) {
+            break;
+        }
     }
 }
 

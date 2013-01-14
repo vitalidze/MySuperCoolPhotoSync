@@ -17,7 +17,7 @@
     NSDateFormatter* dateFormatter;
     CSyncManager* syncManager;
     UIActivityIndicatorView* activityIndicator;
-    UIProgressView* progressView;
+    CProgressViewWithLabelAndCancelButton* progressView;
     __weak IBOutlet UIBarButtonItem *btnDoSync;
 }
 - (IBAction)doSync:(id)sender;
