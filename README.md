@@ -21,13 +21,13 @@
 
 ### Экран синхронизации
 
-![Sync screen](https://raw.github.com/vitalidze/osx-project-2/master/sync-screen.png)
+![Sync screen](https://raw.github.com/vitalidze/MySuperCoolPhotoSync/master/sync-screen.png)
 
 Синхронизация происходит после нажатия на кнопку "Do Sync". В строках таблицы, которые в данный момент закачиваются на компьютер появляется progress bar с индикацией оставшегося времени.
 
 ### Экран настроек
 
-![Settings screen](https://raw.github.com/vitalidze/osx-project-2/master/settings-screen.png)
+![Settings screen](https://raw.github.com/vitalidze/MySuperCoolPhotoSync/master/settings-screen.png)
 
 * В поле "Enter server address here" вводится IP адрес или доменное имя комьютера, на который нужно закачать фотографии.
 
@@ -37,6 +37,6 @@
 
 * Video sync - если включено, то помимо фотографий на компьютер будет загружено вс] видео с iPhone.
 
-### [Roadmap](https://github.com/vitalidze/osx-project-2/wiki/Roadmap)
+### [Roadmap](https://github.com/vitalidze/MySuperCoolPhotoSync/wiki/Roadmap)
 
 ### [Десктопное приложение](https://github.com/vitalidze/CoolPhotoSyncServer)
